@@ -8,13 +8,13 @@ const val BASE_URL = "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api
 class RetrofitClient {
     companion object {
 
-        fun retrofitInstance() : HeroApi {
+        fun retrofitInstance() : HeroeApi {
             val retrofit = Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
 
-            return retrofit.create(HeroApi::class.java)
+            return retrofit.create(HeroeApi::class.java)
         }
     }
 }

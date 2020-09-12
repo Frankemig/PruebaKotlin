@@ -7,13 +7,13 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import cl.sulcansystem.superheroes.model.HeroMini
 @Dao
-interface HeroDao {
+interface HeroeDao {
 
     @Query("SELECT * FROM hero_table")
-    fun getAllHeroes() : LiveData<List<HeroEntity>>
+    fun getAllHeroes() : LiveData<List<HeroeEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertHeroes(heroList : List<HeroEntity>)
+    suspend fun insertHeroes(heroeList : List<HeroeEntity>)
 
     @Query("SELECT id, name, images_sm FROM hero_table")
     fun getMinimalHeroes() : LiveData<List<HeroMini>>

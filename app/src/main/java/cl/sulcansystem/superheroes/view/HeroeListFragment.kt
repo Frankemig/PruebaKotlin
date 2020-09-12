@@ -53,9 +53,9 @@ class HeroListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         adapter = HeroAdapter(heroList)
         heroRecycler.adapter = adapter
-        val heroViewModel : HeroViewModel by activityViewModels()
+        val heroeViewModel : HeroeViewModel by activityViewModels()
 
-        heroViewModel.listHero.observe(viewLifecycleOwner, Observer {
+        heroeViewModel.listHero.observe(viewLifecycleOwner, Observer {
             adapter.updateItems(it)
         })
         adapter.heroSelected.observe(viewLifecycleOwner, Observer {

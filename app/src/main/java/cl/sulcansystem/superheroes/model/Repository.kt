@@ -3,7 +3,7 @@ package cl.sulcansystem.superheroes.model
 import android.content.Context
 import android.util.Log
 import cl.sulcansystem.superheroes.database.HeroDatabase
-import cl.sulcansystem.superheroes.database.HeroEntity
+import cl.sulcansystem.superheroes.database.HeroeEntity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -31,13 +31,13 @@ class Repository (context: Context) {
             }
         })
     }
-    fun heroConverter(listHero : List<Hero>) : List<HeroEntity> {
-        return listHero.map { hero -> HeroEntity(hero.id, hero.name, hero.powerstats, hero.slug, hero.images) }
+    fun heroConverter(listHero : List<Hero>) : List<HeroeEntity> {
+        return listHero.map { hero -> HeroeEntity(hero.id, hero.name, hero.powerstats, hero.slug, hero.images) }
     }
 
-    fun saveDatabase (listHeroEntity: List<HeroEntity>) {
+    fun saveDatabase (listHeroeEntity: List<HeroeEntity>) {
         CoroutineScope(Dispatchers.IO).launch {
-            heroDatabase.getHeroDao().insertHeroes(listHeroEntity)
+            heroDatabase.getHeroDao().insertHeroes(listHeroeEntity)
         }
     }
 }
