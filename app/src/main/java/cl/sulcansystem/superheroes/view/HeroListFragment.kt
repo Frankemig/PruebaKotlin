@@ -1,10 +1,13 @@
 package cl.sulcansystem.superheroes.view
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import cl.sulcansystem.superheroes.R
 import cl.sulcansystem.superheroes.model.HeroMini
 import kotlinx.android.synthetic.main.fragment_hero_list.*
@@ -50,5 +53,16 @@ class HeroListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         adapter = HeroAdapter(heroList)
         heroRecycler.adapter = adapter
+        val heroViewModel : HeroViewModel by activityViewModels()
+
+        heroViewModel.listHero.observe(viewLifecycleOwner, Observer {
+            adapter.updateItems(it)
+        })
+        adapter.heroSelected.observe(viewLifecycleOwner, Observer {
+            Log.d("lifeCycleOwner", "heroe seleccionado $it")
+
+        })
     }
 }
+
+

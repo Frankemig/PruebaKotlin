@@ -11,8 +11,7 @@ abstract class HeroDatabase : RoomDatabase() {
     abstract fun getHeroDao() : HeroDao
 
     companion object {
-        // Singleton prevents multiple instances of database opening at the
-        // same time.
+        // Singleton
         @Volatile
         private var INSTANCE: HeroDatabase? = null
 

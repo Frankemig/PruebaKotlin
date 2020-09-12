@@ -39,4 +39,9 @@ class HeroAdapter (private var heroList : MutableList<HeroMini>) :
     override fun getItemCount(): Int {
         return heroList.size
     }
+    fun updateItems (it: List<HeroMini>) {
+        heroList.clear()
+        heroList.addAll(it)
+        notifyDataSetChanged()
+    }
 }

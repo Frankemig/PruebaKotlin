@@ -14,7 +14,7 @@ import retrofit2.Response
 class Repository (context: Context) {
 
     var heroDatabase = HeroDatabase.getDatabase(context)
-    var listHero = heroDatabase.getHeroDao().getMinimalHeroes()
+    var heroList = heroDatabase.getHeroDao().getMinimalHeroes()
 
     fun loadApiData() {
         val call = RetrofitClient.retrofitInstance().allHeroes()
