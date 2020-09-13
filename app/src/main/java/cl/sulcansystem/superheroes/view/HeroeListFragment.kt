@@ -60,7 +60,8 @@ class HeroListFragment : Fragment() {
         })
         adapter.heroSelected.observe(viewLifecycleOwner, Observer {
             Log.d("lifeCycleOwner", "heroe seleccionado $it")
-
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.container_fragments, HeroeDetailFragment.newInstance(it.id.toString(),""), "Details").addToBackStack("detail").commit()
         })
     }
 }

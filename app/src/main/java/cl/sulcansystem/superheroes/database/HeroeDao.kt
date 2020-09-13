@@ -17,4 +17,7 @@ interface HeroeDao {
 
     @Query("SELECT id, name, images_sm FROM hero_table")
     fun getMinimalHeroes() : LiveData<List<HeroMini>>
+
+    @Query("SELECT * FROM hero_table WHERE id = :id")
+    fun getHeroe(id: Int) : LiveData<HeroeEntity>
 }

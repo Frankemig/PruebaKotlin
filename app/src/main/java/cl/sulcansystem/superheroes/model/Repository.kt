@@ -2,7 +2,8 @@ package cl.sulcansystem.superheroes.model
 
 import android.content.Context
 import android.util.Log
-import cl.sulcansystem.superheroes.database.HeroDatabase
+import androidx.lifecycle.LiveData
+import cl.sulcansystem.superheroes.database.HeroeDatabase
 import cl.sulcansystem.superheroes.database.HeroeEntity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -13,8 +14,8 @@ import retrofit2.Response
 
 class Repository (context: Context) {
 
-    var heroDatabase = HeroDatabase.getDatabase(context)
-    var heroList = heroDatabase.getHeroDao().getMinimalHeroes()
+    var heroDatabase = HeroeDatabase.getDatabase(context)
+    var heroList = heroDatabase.getHeroeDao().getMinimalHeroes()
 
     fun loadApiData() {
         val call = RetrofitClient.retrofitInstance().allHeroes()
@@ -37,7 +38,10 @@ class Repository (context: Context) {
 
     fun saveDatabase (listHeroeEntity: List<HeroeEntity>) {
         CoroutineScope(Dispatchers.IO).launch {
-            heroDatabase.getHeroDao().insertHeroes(listHeroeEntity)
+            heroDatabase.getHeroeDao().insertHeroes(listHeroeEntity)
         }
+    }
+    fun getDetails(param1: String): LiveData<HeroeEntity> {
+        return heroDatabase.getHeroeDao().getHeroe(param1.toInt())
     }
 }

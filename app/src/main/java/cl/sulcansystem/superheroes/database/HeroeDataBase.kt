@@ -6,16 +6,16 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 @Database(entities = [HeroeEntity::class], version = 1)
-abstract class HeroDatabase : RoomDatabase() {
+abstract class HeroeDatabase : RoomDatabase() {
 
-    abstract fun getHeroDao() : HeroeDao
+    abstract fun getHeroeDao() : HeroeDao
 
     companion object {
         // Singleton
         @Volatile
-        private var INSTANCE: HeroDatabase? = null
+        private var INSTANCE: HeroeDatabase? = null
 
-        fun getDatabase(context: Context): HeroDatabase {
+        fun getDatabase(context: Context): HeroeDatabase {
             val tempInstance =
                 INSTANCE
             if (tempInstance != null) {
@@ -24,8 +24,8 @@ abstract class HeroDatabase : RoomDatabase() {
             synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
-                    HeroDatabase::class.java,
-                    "hero_database"
+                    HeroeDatabase::class.java,
+                    "heroe_database"
                 ).build()
                 INSTANCE = instance
                 return instance
